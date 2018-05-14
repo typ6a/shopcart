@@ -1,5 +1,4 @@
 <?php
-require_once '../kdg/libs/debug.php';
 	session_start();
 	require_once("config.php");
 	require_once("cart.php");
@@ -34,29 +33,31 @@ require_once '../kdg/libs/debug.php';
                     foreach($products as $product){
                 ?>
                     <tr productId="<?=$product->id; ?>">
-                        <td><img src="<?= $product->picture; ?>" class="rounded float-left" style="width: 100px"></td>
+                        <td><img src="<?= $product->picture; ?>" class="rounded float-left" style="height: 75"></td>
                         <td><?= $product->name; ?></td>
                         <td>$<?= $product->price; ?></td>
                         <td>
                             <div class="input-group">
                                 <select class="rateSelect custom-select" id="">
-                                    <option selected><?=$product->rate; ?></option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
+                                    <option selected>5</option>
                                     <option value="4">4</option>
-                                    <option value="5">5</option>
+                                    <option value="3">3</option>
+                                    <option value="2">2</option>
+                                    <option value="1">1</option>
                                 </select>
                                 <div class="input-group-append">
-                                    <button class="rate btn btn-outline-info">Rate(<?= $product->ratesCount; ?>)</button>
+                                    <button class="rate btn btn-outline-info">Rate</button>
                                 </div>
                             </div>
+                            <div>Current rating: <?=number_format($product->rate, 2, '.', ''); ?></div><div> Votes: <?=$product->ratesCount; ?></div>
                         </td>
                         <td>
-                            <input type="text" class="qty form-control" placeholder="0">
+                            <input type="text" class="qty form-control" placeholder="">
                         </td>
 
-                        <td><button class="addToCart btn btn-outline-danger">Add to cart</button></td>
+                        <td>
+                            <button class="addToCart btn btn-outline-danger">Add to cart</button>
+                        </td>
                     </tr>
                 <?php
                     }
