@@ -27,7 +27,6 @@ require_once '../kdg/libs/debug.php';
                         <th>Price</th>
                         <th>Rating</th>
                         <th>Qty</th>
-                      
                         <th></th>
                     </tr>
                 </thead>
@@ -47,8 +46,8 @@ require_once '../kdg/libs/debug.php';
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
-                                </select> 
-                                <div class="input-group-append">   
+                                </select>
+                                <div class="input-group-append">
                                     <button class="rate btn btn-outline-info">Rate(<?= $product->ratesCount; ?>)</button>
                                 </div>
                             </div>
@@ -56,11 +55,11 @@ require_once '../kdg/libs/debug.php';
                         <td>
                             <input type="text" class="qty form-control" placeholder="0">
                         </td>
-                 
+
                         <td><button class="addToCart btn btn-outline-danger">Add to cart</button></td>
                     </tr>
-                <?php 
-                    } 
+                <?php
+                    }
                 ?>
     		</table>
         </div>
