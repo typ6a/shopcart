@@ -148,14 +148,7 @@
 	{
 		$sql = 'select * from products where id ='. $id .' limit 1';
 		$query = mysqli_query($this->db, $sql);
-		$row = mysqli_fetch_row($query);
-		$product = new stdClass;
-		$product->id         = $row[0];
-		$product->name       = $row[1];
-		$product->price      = $row[2];
-		$product->rate       = $row[3];
-		$product->ratesCount = $row[4];
-		$product->picture    = $row[5];
-		return $product;
+		$row = mysqli_fetch_assoc($query);
+		return (object) $row;
 	}
  }
