@@ -34,25 +34,23 @@ $(document).ready(function()
 		var cash = $('.cash').text();
 		var cost = +$('.cost').text() + transport;
 		var rest = cash - cost;
-		if (rest < 0) 
+		if (rest < 0)
 		{
 			alert('You have not enough money.');
 			return false;
 		}
-		if (isNaN(transport)) 
+		if (isNaN(transport))
 		{
 			alert('You have to select a transport.');
 			return false;
 		}
 		alert('Your order costs $'+cost+' including transport costs');
-			console.log(cost);
 	});
 
 	$('button.rate').on('click',function()
 	{
 		var id = $(this).closest( 'tr' ).attr('productId');
 		var rate = $(this).closest( 'tr' ).find( 'select.rateSelect' ).val();
-			console.log(rate);
 		$.ajax({
 			type: 'GET',
 			url: 'ajax.php?id='+id+'&rate='+rate+'&action=rate'
