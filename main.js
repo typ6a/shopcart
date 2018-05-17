@@ -6,7 +6,7 @@ $(document).ready(function()
 		var qty = $(this).closest( 'tr' ).find( 'input' ).val();
 		$.ajax({
 			type: 'GET',
-			url: 'ajax.php?id='+id+'&qty='+qty+'&action=add'
+			url: '../ajax.php?id='+id+'&qty='+qty+'&action=add'
 		})
 		.done(function()
 		{
@@ -14,46 +14,58 @@ $(document).ready(function()
 		});
 	});
 
-	$('button.update').on('click',function()
+	$('button.update').on('click', function()
 	{
 		var id = $(this).closest( 'tr' ).attr('productId');
 		var qty = $(this).closest( 'tr' ).find( 'input' ).val();
 			console.log(qty);
 		$.ajax({
 			type: 'GET',
-			url: 'ajax.php?id='+id+'&qty='+qty+'&action=update'
+			url: '../ajax.php?id='+id+'&qty='+qty+'&action=update'
 		})
 		.done(function()
 		{
 			location.reload();
 		});
 	});
+
 	$('a.pay').on('click',function()
 	{
 		var transport = +$( 'select.transport' ).val();
 		var cash = $('.cash').text();
 		var cost = +$('.cost').text() + transport;
 		var rest = cash - cost;
-		if (rest < 0)
+		if (rest < 0) 
 		{
 			alert('You have not enough money.');
 			return false;
 		}
-		if (isNaN(transport))
+		if (isNaN(transport)) 
 		{
 			alert('You have to select a transport.');
 			return false;
 		}
-		alert('Your order costs $'+cost+' including transport costs');
+		alert('Your order costs $'+cost+' including transport costs $'+transport+'');
+			console.log(cost);
+
+		$.ajax({
+			type: 'GET',
+			url: '../ajax.php?action=pay&transport='+transport+''
+		})
+		.done(function()
+		{
+			history.back();
+		});
 	});
 
 	$('button.rate').on('click',function()
 	{
 		var id = $(this).closest( 'tr' ).attr('productId');
 		var rate = $(this).closest( 'tr' ).find( 'select.rateSelect' ).val();
+			console.log(id);
 		$.ajax({
 			type: 'GET',
-			url: 'ajax.php?id='+id+'&rate='+rate+'&action=rate'
+			url: '../ajax.php?id='+id+'&rate='+rate+'&action=rate'
 		})
 		.done(function()
 		{
@@ -66,13 +78,14 @@ $(document).ready(function()
 		var id = $(this).closest( 'tr' ).attr('productId');
 		$.ajax({
 			type: 'GET',
-			url: 'ajax.php?id='+id+'&action=remove'
+			url: '../ajax.php?id='+id+'&action=remove'
 		})
 		.done(function()
 		{
 			location.reload();
 		});
 	});
+
 	$('a.emptyCart').on('click',function()
 	{
 		$.ajax({

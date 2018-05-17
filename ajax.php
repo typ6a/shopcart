@@ -1,8 +1,6 @@
 <?php
-	session_start();
-	require_once('config.php');
-	require_once('cart.php');
-	$cart = new cart();
+	require_once('loader.php');
+	$cart = new Cart();
 	$action = strip_tags($_GET['action']);
 	switch ($action) 
 	{
@@ -20,6 +18,9 @@
 			break;
 		case 'update':
 			$cart->updateCart();
+			break;
+		case 'pay':
+			$cart->pay();
 			break;
 	}
 ?>

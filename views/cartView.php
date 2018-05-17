@@ -1,9 +1,3 @@
-<?php
-	session_start();
-	$_SESSION["cash"] = 100;
-	require_once("config.php");
-	require_once("cart.php");
-?>
 <html>
 	<head>
 		<title>CART</title>
@@ -15,10 +9,12 @@
         <?php
             $cart = new cart();
             $products = $cart->getCart();
-            $cash = json_decode($_SESSION["cash"], true);
+            $cash = $cart->cartCalc()[0];
+            $cost = $cart->cartCalc()[1];
+            $rest = $cart->cartCalc()[2];
         ?>
         <div class="container-fluid">
-		<h1>CART</h1>
+		<h1>CART <?= $_SESSION['username'] ?></h1>
         	<a class="btn btn-primary" href="index.php">Back to shop</a>
             <a class="emptyCart btn btn-danger">Empty cart</a>
             <a class="pay btn btn-success">&nbsp&nbsp&nbsp&nbspPay&nbsp&nbsp&nbsp&nbsp</a>
@@ -61,14 +57,14 @@
 				</div>
 				<select class="transport custom-select" id="">
 					<option selected>N/A</option>
-                    <option value="0">pick up</option>
-                    <option value="5">UPS</option>
+                    <option value="0">pick up (costs $0)</option>
+                    <option value="5">UPS (costs $5)</option>
 				</select>
 			</div>
 			<br>
         	<p class="font-weight-bold">Cash: $<span class="cash"><?=$cash?></span>  </p>
-        	<p class="font-weight-bold">Cost: $<span class="cost"><?=$cartTotal?></span>  </p>
-        	<p class="font-weight-bold">Rest: $<span class="rest"><?=$cash - $cartTotal?></span>  </p>
+        	<p class="font-weight-bold">Cost: $<span class="cost"><?=$cost?></span>  </p>
+            <p class="font-weight-bold">Rest: $<span class="rest"><?=$rest?></span>  </p>
         </div>
 	</body>
 </html>
