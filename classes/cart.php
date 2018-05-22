@@ -110,6 +110,7 @@ class Cart
 	{
 		$transport = $_GET["transport"];
 		$_SESSION['cash'] = $_SESSION['cash'] - $this->cartCalc()[1] - $transport;
+		$this->emptyCart();
 	}
 
 	public function removeFromCart()

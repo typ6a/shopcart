@@ -46,8 +46,6 @@ $(document).ready(function()
 			return false;
 		}
 		alert('Your order costs $'+cost+' including transport costs $'+transport+'');
-			console.log(cost);
-
 		$.ajax({
 			type: 'GET',
 			url: '../ajax.php?action=pay&transport='+transport+''

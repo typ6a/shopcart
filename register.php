@@ -1,8 +1,6 @@
 <?php
 // Include config file
-require_once '../kdg/libs/debug.php';
 require_once 'config.php';
- pre("test register.php");
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";

@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE TABLE IF NOT EXISTS rates (
-    id int NOT NULL PRIMARY KEY,
+    id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
     value int NOT NULL,
     user_id int NOT NULL,
     product_id int NOT NULL,
@@ -30,3 +30,5 @@ INSERT INTO products (id, name, price, rate, rates_count, picture) VALUES
 
 INSERT INTO users (username, password) VALUES
 ('admin', '$2y$10$HbjeY68saD0mZDuKVt4H...TJhMd6.vWqMqYeWOZyCeGfEXtm2lmm'); --123
+
+
